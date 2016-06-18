@@ -9,6 +9,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import org.json.JSONArray;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import grupo1.ciu.laberintoapp.Adapter.LaberintoAdapter;
@@ -38,7 +43,7 @@ public class ListaLaberintosActivity extends AppCompatActivity {
         // IMPORTANTE
         // Por un bug de retrofit 2.0, la BASE_URL debe tener una / al final
         // y la dirección del service debe comenzar sin /, como un path relativo
-        String BASE_URL = "http://192.168.0.18:7000/";
+        String BASE_URL = "http://192.168.0.108:7000/";
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -48,19 +53,28 @@ public class ListaLaberintosActivity extends AppCompatActivity {
         laberintosService = retrofit.create(LaberintosService.class);
         Call<List<LaberintoMin>> LaberintoCall = laberintosService.getLaberintos();
 
+    /*    // Construct the data source
+        ArrayList<LaberintoMin> laberintos = LaberintoMin.fromJson();
+        // Create the adapter to convert the array to views
+        LaberintoAdapter adapter = new LaberintoAdapter(this, laberintos);
+        // Attach the adapter to a ListView
+        ListView listView = (ListView) findViewById(R.id.listView);
+        listView.setAdapter(adapter);
+*/
         LaberintoCall.enqueue(new Callback<List<LaberintoMin>>() {
             @Override
             public void onResponse(Response<List<LaberintoMin>> response, Retrofit retrofit) {
                 List<LaberintoMin> laberintos = response.body();
-
-                //(new LaberintoAdapter( getBaseContext(),laberintos));
+                LaberintoAdapter adapter = new LaberintoAdapter(getBaseContext(),laberintos);
+                ListView listView=(ListView) findViewById(R.id.listView);
+                listView.setAdapter(adapter);
 
             }
 
             @Override
             public void onFailure(Throwable t) {
                 t.printStackTrace();
-                Log.e("PeliculasApp", t.getMessage());
+                Log.e("PeliculasApp ", t.getMessage());
             }
         });
 

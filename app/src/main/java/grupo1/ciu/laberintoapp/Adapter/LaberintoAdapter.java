@@ -19,8 +19,8 @@ import grupo1.ciu.laberintoapp.dominio.LaberintoMin;
 public class LaberintoAdapter extends ArrayAdapter<LaberintoMin> {
 
 
-        public LaberintoAdapter(Context context, List<LaberintoMin> peliculas) {
-            super(context, R.layout.elemento_listado, peliculas);
+        public LaberintoAdapter(Context context, List<LaberintoMin> laberintos) {
+            super(context, R.layout.elemento_listado, laberintos);
         }
 
         @Override
@@ -30,17 +30,20 @@ public class LaberintoAdapter extends ArrayAdapter<LaberintoMin> {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = (LayoutInflater) getContext()
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View rowView = inflater.inflate(R.layout.elemento_listado, parent, false);
+        public View getView(int position, View rowView, ViewGroup parent) {
             final LaberintoMin  laberinto = getItem(position);
+            if(rowView==null) {
+                 rowView = LayoutInflater.from(getContext()).inflate(R.layout.elemento_listado, parent, false);
+            }
+            //otra forma de manejar el inflate()
+           // LayoutInflater inflater = (LayoutInflater) getContext()
+              //      .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
             TextView nombreLaberinto = (TextView) rowView.findViewById(R.id.nombreLaberinto);
             nombreLaberinto.setText(laberinto.getNombreLaberinto());
 
             TextView idlab = (TextView) rowView.findViewById(R.id.idLaberinto);
-            idlab.setText(laberinto.getIdInterno());
+            //idlab.setText(laberinto.getIdInterno());
 
             /* Codigo para insertar una imagen,ver como hacerlo si nos viene un string con la ruta
             ImageView imagenLaberinto= rowView.findViewById(R.id.imageView_imagen)
@@ -48,5 +51,9 @@ public class LaberintoAdapter extends ArrayAdapter<LaberintoMin> {
 
             return rowView;
         }
-    }
+
+
+
+
+}
 
