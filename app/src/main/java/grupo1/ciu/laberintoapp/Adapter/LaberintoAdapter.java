@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import grupo1.ciu.laberintoapp.R;
@@ -42,12 +44,18 @@ public class LaberintoAdapter extends ArrayAdapter<LaberintoMin> {
             TextView nombreLaberinto = (TextView) rowView.findViewById(R.id.nombreLaberinto);
             nombreLaberinto.setText(laberinto.getNombreLaberinto());
 
-            TextView idlab = (TextView) rowView.findViewById(R.id.idLaberinto);
+            //TextView idlab = (TextView) rowView.findViewById(R.id.idLaberinto);
             //idlab.setText(laberinto.getIdInterno());
 
-            /* Codigo para insertar una imagen,ver como hacerlo si nos viene un string con la ruta
-            ImageView imagenLaberinto= rowView.findViewById(R.id.imageView_imagen)
-            imagenLaberinto.setImageDrawable(laberinto.getPathImage());*/
+            ImageView imageView = (ImageView) rowView.findViewById(R.id.imageView);
+
+            Picasso.with(getContext())
+                    .load("https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg")
+                    .into(imageView);
+
+            // Codigo para insertar una imagen,ver como hacerlo si nos viene un string con la ruta
+            //ImageView imagenLaberinto= rowView.findViewById(R.id.imageView);
+            //imagenLaberinto.setImageDrawable(laberinto.getPathImage());
 
             return rowView;
         }
