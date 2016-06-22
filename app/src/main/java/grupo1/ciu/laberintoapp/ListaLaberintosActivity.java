@@ -4,15 +4,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -31,19 +36,21 @@ import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-public class ListaLaberintosActivity extends AppCompatActivity {
+public class ListaLaberintosActivity extends FragmentActivity {
     private LaberintosService laberintosService;
+    private boolean pantallaTablet;
+    LaberintoMin seleccionado;
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_laberintos);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+       /* Todavia no utilizamos la toolbar para nada
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar);*/
 
-
-
-        String BASE_URL = "http://192.168.0.108:7000/";
+        String BASE_URL = "http://192.168.1.7:7000/";
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -58,9 +65,22 @@ public class ListaLaberintosActivity extends AppCompatActivity {
             @Override
             public void onResponse(Response<List<LaberintoMin>> response, Retrofit retrofit) {
                 List<LaberintoMin> laberintos = response.body();
-                LaberintoAdapter adapter = new LaberintoAdapter(getBaseContext(),laberintos);
-                ListView listView=(ListView) findViewById(R.id.listView);
+                LaberintoAdapter adapter = new LaberintoAdapter(getBaseContext(), laberintos);
+                listView = (ListView) findViewById(R.id.listView);
+                // para mostrar el text view seleccionado=(TextView)findViewById(R.id.seleccionado);
                 listView.setAdapter(adapter);
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> pariente, View view, int posicion, long id) {
+                        seleccionado = (LaberintoMin) pariente.getItemAtPosition(posicion);
+
+                        Log.i("",seleccionado.getNombreLaberinto());
+
+                    };
+
+
+                });
 
             }
 
@@ -69,17 +89,35 @@ public class ListaLaberintosActivity extends AppCompatActivity {
                 t.printStackTrace();
                 Log.e("PeliculasApp ", t.getMessage());
             }
+
+
+
         });
+        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> pariente, View view, int posicion, long id) {
+                seleccionado = (LaberintoMin) pariente.getItemAtPosition(posicion);
 
-        Button entry = (Button) findViewById(R.id.button2);
+                CharSequence texto = "Seleccionado: " + seleccionado.getNombreLaberinto();
+                Toast toast = Toast.makeText(ListaLaberintosActivity.this, texto, Toast.LENGTH_LONG);
+                toast.show();
+            }*/
+        };
 
-        entry.setOnClickListener(new View.OnClickListener() {
+
+        //Button entry = (Button) findViewById(R.id.button2);
+
+        /*entry.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Intent InventarioActivity= new Intent(getApplicationContext(), InventarioLaberintoActivity.class);
+                Intent InventarioActivity = new Intent(getApplicationContext(), InventarioLaberintoActivity.class);
                 startActivity(InventarioActivity);
             }
-        });
-    }
-}
+        });*/
+
+
+
+
+    };
+

@@ -44,8 +44,8 @@ public class LaberintoAdapter extends ArrayAdapter<LaberintoMin> {
             TextView nombreLaberinto = (TextView) rowView.findViewById(R.id.nombreLaberinto);
             nombreLaberinto.setText(laberinto.getNombreLaberinto());
 
-            //TextView idlab = (TextView) rowView.findViewById(R.id.idLaberinto);
-            //idlab.setText(laberinto.getIdInterno());
+            TextView idlab = (TextView) rowView.findViewById(R.id.descripcionLab);
+            idlab.setText(laberinto.getDescripcion());
 
             ImageView imageView = (ImageView) rowView.findViewById(R.id.imageView);
 

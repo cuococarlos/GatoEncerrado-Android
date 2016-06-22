@@ -14,6 +14,7 @@ public class LaberintoMin {
     String nombreLaberinto;
     String pathImage;
     int idInterno;
+    String descripcion;
 
     public String getNombreLaberinto() {
         return nombreLaberinto;
@@ -27,8 +28,11 @@ public class LaberintoMin {
         return idInterno;
     }
 
+    public String getDescripcion(){return descripcion;}
+
         public LaberintoMin (JSONObject lab) {
             try {
+                this.descripcion= lab.getString("descripcion");
                 this.nombreLaberinto = lab.getString("nombreLaberinto");
                 this.pathImage = lab.getString("pathImage");
                 this.idInterno= lab.getInt("IdInterno");
