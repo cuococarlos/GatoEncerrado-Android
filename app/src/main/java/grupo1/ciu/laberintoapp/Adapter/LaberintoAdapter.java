@@ -56,9 +56,10 @@ public class LaberintoAdapter extends ArrayAdapter<LaberintoMin> {
             final TextView descripcionLaberinto = (TextView) rowView.findViewById(R.id.descripcionLab);
             descripcionLaberinto.setText(laberinto.getDescripcion());
 
+            String URL_PHOTOS= "http://imagizer.imageshack.us/a/";
             ImageView imageView = (ImageView) rowView.findViewById(R.id.imageView);
             Picasso.with(getContext())
-                    .load("https://i.ytimg.com/vi/3j10ZSTxVHA/hqdefault.jpg")
+                    .load(URL_PHOTOS + laberinto.getPathImage())
                     .into(imageView);
 
             // Codigo para insertar una imagen,ver como hacerlo si nos viene un string con la ruta

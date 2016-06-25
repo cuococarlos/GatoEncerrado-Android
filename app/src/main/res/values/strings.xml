@@ -4,6 +4,7 @@
     <string name="boton1">VerInventario</string>
     <string name="title_activity_inventario_laberinto">InventarioLaberintoActivity</string>
     <string name="tituloprimerapantalla">Laberintos Disponibles</string>
+    <string name="tituloinventario">Inventario</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

@@ -44,6 +44,7 @@ public class InventarioLaberintoActivity extends AppCompatActivity {
 
         String idLab2=  Integer.toString(idLab);
         Call<List<ElementoMin>> InventarioCall = inventarioService.getInventario(idLab2);
+        Log.e("elementos inv",InventarioCall.toString());
         InventarioCall.enqueue(new Callback<List<ElementoMin>>() {
             @Override
             public void onResponse(Response<List<ElementoMin>> response, Retrofit retrofit) {

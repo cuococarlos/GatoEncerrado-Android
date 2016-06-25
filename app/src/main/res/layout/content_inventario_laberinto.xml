@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,18 +7,30 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="grupo1.ciu.laberintoapp.InventarioLaberintoActivity"
     tools:showIn="@layout/activity_inventario_laberinto">
-<RelativeLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+
 
     <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/inventarioView"
+        android:layout_alignParentStart="false"
+        android:layout_below="@+id/textView" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/inventarioView"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/tituloinventario"
+        android:id="@+id/textView"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="143dp"
+        android:textIsSelectable="false"
+        android:textSize="30sp"
+        android:textStyle="bold|italic"
+        android:textAlignment="center"
+        android:layout_centerInParent="true" />
 
 
 </RelativeLayout>
 
-</android.support.v4.widget.NestedScrollView>

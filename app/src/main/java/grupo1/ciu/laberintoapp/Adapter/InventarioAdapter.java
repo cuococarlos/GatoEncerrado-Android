@@ -35,13 +35,13 @@ public class InventarioAdapter extends ArrayAdapter<ElementoMin>{
     public View getView(int position, View rowView, ViewGroup parent) {
         final ElementoMin  elementoMin = getItem(position);
         if(rowView==null) {
-            rowView = LayoutInflater.from(getContext()).inflate(R.layout.elemento_listado, parent, false);
+            rowView = LayoutInflater.from(getContext()).inflate(R.layout.elementoinventario_listado, parent, false);
         }
         //otra forma de manejar el inflate()
         // LayoutInflater inflater = (LayoutInflater) getContext()
         //      .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-       TextView nombreElemento = (TextView) rowView.findViewById(R.id.nombreLaberinto);
+       final TextView nombreElemento = (TextView) rowView.findViewById(R.id.nombreItem);
         nombreElemento.setText(elementoMin.getNombre());
 
         //TextView idlab = (TextView) rowView.findViewById(R.id.idLaberinto);
