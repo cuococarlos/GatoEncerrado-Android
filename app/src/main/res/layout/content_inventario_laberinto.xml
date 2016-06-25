@@ -7,13 +7,18 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="grupo1.ciu.laberintoapp.InventarioLaberintoActivity"
     tools:showIn="@layout/activity_inventario_laberinto">
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
         android:id="@+id/inventarioView"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
-    </ListView>
+
+</RelativeLayout>
+
 </android.support.v4.widget.NestedScrollView>

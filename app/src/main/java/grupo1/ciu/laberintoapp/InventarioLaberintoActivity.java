@@ -24,7 +24,7 @@ import retrofit.Retrofit;
 
 public class InventarioLaberintoActivity extends AppCompatActivity {
     private LaberintosService inventarioService;
-
+    ListView inventarioList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +32,9 @@ public class InventarioLaberintoActivity extends AppCompatActivity {
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
 
-        String BASE_URL = "http://192.168.1.7:7000/";
-
+        String BASE_URL = "http://192.168.0.18:7000/";
+        Integer idLab =getIntent().getIntExtra("idLaberinto",28);
+        Log.i("Que dato me estoy tray",idLab.toString());
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -41,24 +42,22 @@ public class InventarioLaberintoActivity extends AppCompatActivity {
 
         inventarioService = retrofit.create(LaberintosService.class);
 
-    }
-
-        private void buscarInventario(int idLaberinto){
-        String idLab=  Integer.toString(idLaberinto);
-        Call<List<ElementoMin>> InventarioCall = inventarioService.getInventario(idLab);
+        String idLab2=  Integer.toString(idLab);
+        Call<List<ElementoMin>> InventarioCall = inventarioService.getInventario(idLab2);
         InventarioCall.enqueue(new Callback<List<ElementoMin>>() {
             @Override
             public void onResponse(Response<List<ElementoMin>> response, Retrofit retrofit) {
                 List<ElementoMin> inventario = response.body();
                 InventarioAdapter adapter = new InventarioAdapter(getBaseContext(),inventario);
-
+                inventarioList=(ListView)findViewById(R.id.inventarioView);
+                inventarioList.setAdapter(adapter);
 
             }
 
             @Override
             public void onFailure(Throwable t) {
                 t.printStackTrace();
-                Log.e("PeliculasApp ", t.getMessage());
+                Log.e("LabApp ", t.getMessage());
             }
         });
 
@@ -71,16 +70,16 @@ public class InventarioLaberintoActivity extends AppCompatActivity {
         // Create the adapter to convert the array to views
         LaberintoAdapter adapter = new LaberintoAdapter(this, laberintos);
         // Attach the adapter to a ListView
-        ListView listView = (ListView) findViewById(R.id.listView);
-        listView.setAdapter(adapter);
+        ListView listViewLaberintos = (ListView) findViewById(R.id.listViewLaberintos);
+        listViewLaberintos.setAdapter(adapter);
 */
         /*InventarioCall.enqueue(new Callback<List<LaberintoMin>>() {
             @Override
             public void onResponse(Response<List<LaberintoMin>> response, Retrofit retrofit) {
                 List<LaberintoMin> laberintos = response.body();
                 LaberintoAdapter adapter = new LaberintoAdapter(getBaseContext(),laberintos);
-                ListView listView=(ListView) findViewById(R.id.listView);
-                listView.setAdapter(adapter);
+                ListView listViewLaberintos=(ListView) findViewById(R.id.listViewLaberintos);
+                listViewLaberintos.setAdapter(adapter);
 
             }
 

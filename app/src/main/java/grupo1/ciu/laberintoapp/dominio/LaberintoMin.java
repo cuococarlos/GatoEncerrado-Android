@@ -13,7 +13,7 @@ public class LaberintoMin {
 
     String nombreLaberinto;
     String pathImage;
-    int idInterno;
+    String idInterno;
     String descripcion;
 
     public String getNombreLaberinto() {
@@ -24,7 +24,7 @@ public class LaberintoMin {
         return pathImage;
     }
 
-    public int getIdInterno() {
+    public String getIdInterno() {
         return idInterno;
     }
 
@@ -35,7 +35,7 @@ public class LaberintoMin {
                 this.descripcion= lab.getString("descripcion");
                 this.nombreLaberinto = lab.getString("nombreLaberinto");
                 this.pathImage = lab.getString("pathImage");
-                this.idInterno= lab.getInt("IdInterno");
+                this.idInterno= lab.getString("id");
             } catch (JSONException e) {
                 e.printStackTrace();
             }

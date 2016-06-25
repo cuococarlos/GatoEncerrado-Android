@@ -17,25 +17,23 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/tituloprimerapantalla"
-        android:id="@+id/textView"
+        android:id="@+id/tituloPrimerPantalla"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/listView" />
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="0dp" />
+
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listView"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/textView" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button2"
-        android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true" />
-
+        android:id="@+id/listView2"
+        android:layout_alignParentEnd="false"
+        android:textAlignment="center"
+        android:layout_marginTop="40dp" />
 
 
 </RelativeLayout>

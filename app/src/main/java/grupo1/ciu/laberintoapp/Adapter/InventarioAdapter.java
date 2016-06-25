@@ -41,8 +41,8 @@ public class InventarioAdapter extends ArrayAdapter<ElementoMin>{
         // LayoutInflater inflater = (LayoutInflater) getContext()
         //      .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-       // TextView nombreElemento = (TextView) rowView.findViewById(R.id.);
-        //nombreElemento.setText(elementoMin.getNombre());
+       TextView nombreElemento = (TextView) rowView.findViewById(R.id.nombreLaberinto);
+        nombreElemento.setText(elementoMin.getNombre());
 
         //TextView idlab = (TextView) rowView.findViewById(R.id.idLaberinto);
         //idlab.setText(laberinto.getIdInterno());

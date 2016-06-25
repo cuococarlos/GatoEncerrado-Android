@@ -1,10 +1,16 @@
 package grupo1.ciu.laberintoapp.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.inputmethodservice.Keyboard;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,6 +18,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import grupo1.ciu.laberintoapp.InventarioLaberintoActivity;
 import grupo1.ciu.laberintoapp.R;
 import grupo1.ciu.laberintoapp.dominio.LaberintoMin;
 
@@ -27,12 +34,12 @@ public class LaberintoAdapter extends ArrayAdapter<LaberintoMin> {
 
         @Override
         public long getItemId(int position) {
-            return getItem(position).getIdInterno();
+            return Long.parseLong(getItem(position).getIdInterno());
 
         }
 
         @Override
-        public View getView(int position, View rowView, ViewGroup parent) {
+        public View getView(final int position, View rowView, ViewGroup parent) {
             final LaberintoMin  laberinto = getItem(position);
             if(rowView==null) {
                  rowView = LayoutInflater.from(getContext()).inflate(R.layout.elemento_listado, parent, false);
@@ -41,21 +48,43 @@ public class LaberintoAdapter extends ArrayAdapter<LaberintoMin> {
            // LayoutInflater inflater = (LayoutInflater) getContext()
               //      .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            TextView nombreLaberinto = (TextView) rowView.findViewById(R.id.nombreLaberinto);
+            final TextView nombreLaberinto = (TextView) rowView.findViewById(R.id.nombreLaberinto);
             nombreLaberinto.setText(laberinto.getNombreLaberinto());
+            final TextView idLaberinto= (TextView) rowView.findViewById(R.id.idLaberinto);
+            idLaberinto.setText(laberinto.getIdInterno());
 
-            TextView idlab = (TextView) rowView.findViewById(R.id.descripcionLab);
-            idlab.setText(laberinto.getDescripcion());
+            final TextView descripcionLaberinto = (TextView) rowView.findViewById(R.id.descripcionLab);
+            descripcionLaberinto.setText(laberinto.getDescripcion());
 
             ImageView imageView = (ImageView) rowView.findViewById(R.id.imageView);
-
             Picasso.with(getContext())
-                    .load("https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg")
+                    .load("https://i.ytimg.com/vi/3j10ZSTxVHA/hqdefault.jpg")
                     .into(imageView);
 
             // Codigo para insertar una imagen,ver como hacerlo si nos viene un string con la ruta
             //ImageView imagenLaberinto= rowView.findViewById(R.id.imageView);
             //imagenLaberinto.setImageDrawable(laberinto.getPathImage());
+
+            nombreLaberinto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+
+            });
+            final Button inventario= (Button)rowView.findViewById(R.id.buttonListado);
+            inventario.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("c","pase por aca");
+                    Intent InventarioActivity = new Intent(getContext(), InventarioLaberintoActivity.class);
+                    InventarioActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Log.i("Que dato paso",Integer.toString(R.id.idLaberinto));
+                    InventarioActivity.putExtra("idLaberinto",R.id.idLaberinto);
+                    getContext().startActivity(InventarioActivity);
+
+                }
+            });
 
             return rowView;
         }
