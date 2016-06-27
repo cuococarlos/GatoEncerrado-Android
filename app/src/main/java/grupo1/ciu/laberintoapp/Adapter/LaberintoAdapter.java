@@ -62,17 +62,8 @@ public class LaberintoAdapter extends ArrayAdapter<LaberintoMin> {
                     .load(URL_PHOTOS + laberinto.getPathImage())
                     .into(imageView);
 
-            // Codigo para insertar una imagen,ver como hacerlo si nos viene un string con la ruta
-            //ImageView imagenLaberinto= rowView.findViewById(R.id.imageView);
-            //imagenLaberinto.setImageDrawable(laberinto.getPathImage());
 
-            nombreLaberinto.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                }
-
-            });
             final Button inventario= (Button)rowView.findViewById(R.id.buttonListado);
             inventario.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -81,7 +72,6 @@ public class LaberintoAdapter extends ArrayAdapter<LaberintoMin> {
                     Intent InventarioActivity = new Intent(getContext(), InventarioLaberintoActivity.class);
                     InventarioActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     Log.i("Que dato paso",Integer.toString(R.id.idLaberinto));
-                    InventarioActivity.putExtra("idLaberinto",R.id.idLaberinto);
                     getContext().startActivity(InventarioActivity);
 
                 }
