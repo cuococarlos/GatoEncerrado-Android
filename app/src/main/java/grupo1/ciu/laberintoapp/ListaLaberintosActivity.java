@@ -3,6 +3,7 @@ package grupo1.ciu.laberintoapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,7 +23,7 @@ import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-public class ListaLaberintosActivity extends FragmentActivity {
+public class ListaLaberintosActivity extends AppCompatActivity {
     private LaberintosService laberintosService;
     private boolean pantallaTablet;
     LaberintoMin seleccionado;
@@ -36,8 +37,8 @@ public class ListaLaberintosActivity extends FragmentActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar)
         setSupportActionBar(toolbar);*/
 
-        String BASE_URL = "http://192.168.0.18:7000/";
-
+        //String BASE_URL = "http://192.168.0.18:7000/";
+        String BASE_URL = "http:192.168.122.1:7000/";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -86,24 +87,18 @@ public class ListaLaberintosActivity extends FragmentActivity {
 
     };
 
+    public void onItemSelected(LaberintoMin labMin){
+        Log.i("anda el click?","Si anda");
+        Intent inventarioActivity = new Intent(this, InventarioLaberintoActivity.class);
+        inventarioActivity.putExtra("laberintoParametro",labMin);
+        startActivity(inventarioActivity);
+
+    }
 
 
 
 
-        void cambiar(){
-            //public void onItemSelected(LaberintoMin laberinto) {
-            // In single-pane mode, simply start the detail activity
-            // for the selected item ID.
-            Intent InventarioActivity = new Intent(getApplicationContext(), InventarioLaberintoActivity.class);
-            startActivity(InventarioActivity);
 
-        }
-
-        /*void cambiarInventario(){
-        Intent InventarioActivity = new Intent(getApplicationContext(), InventarioLaberintoActivity.class);
-        startActivity(InventarioActivity);
-
-            };*/
 
 
 

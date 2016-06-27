@@ -36,7 +36,6 @@ public Long idlong;
 
         @Override
         public long getItemId(int position) {
-            //return Long.parseLong(getItem(position).getIdInterno());
             return getItem(position).getIdInterno();
         }
 
@@ -54,8 +53,7 @@ public Long idlong;
 
             final TextView nombreLaberinto = (TextView) rowView.findViewById(R.id.nombreLaberinto);
             nombreLaberinto.setText(laberinto.getNombreLaberinto());
-            /*final TextView idLaberinto= (TextView) rowView.findViewById(R.id.idLaberinto);
-            idLaberinto.setText(Integer.toString(laberinto.getIdInterno()));*/
+
 
             final TextView descripcionLaberinto = (TextView) rowView.findViewById(R.id.descripcionLab);
             descripcionLaberinto.setText(laberinto.getDescripcion());
@@ -66,9 +64,6 @@ public Long idlong;
                     .load(URL_PHOTOS + laberinto.getPathImage())
                     .into(imageView);
 
-            // Codigo para insertar una imagen,ver como hacerlo si nos viene un string con la ruta
-            //ImageView imagenLaberinto= rowView.findViewById(R.id.imageView);
-            //imagenLaberinto.setImageDrawable(laberinto.getPathImage());
 
 
             final Button inventario= (Button)rowView.findViewById(R.id.buttonListado);
@@ -79,7 +74,6 @@ public Long idlong;
                     
                     Intent inventarioActivity = new Intent(getContext(), InventarioLaberintoActivity.class);
                     inventarioActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                   // Log.i("Que dato paso",(idDelLaberinto));
                     inventarioActivity.putExtra("id",idDelLaberinto);
                     inventarioActivity.putExtra("idlong", idlong);
                     getContext().startActivity(inventarioActivity);

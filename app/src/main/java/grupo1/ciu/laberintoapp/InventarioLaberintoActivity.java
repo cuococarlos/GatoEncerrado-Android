@@ -1,5 +1,6 @@
 package grupo1.ciu.laberintoapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -31,8 +32,8 @@ public class InventarioLaberintoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_inventario_laberinto);
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
-
-        String BASE_URL = "http://192.168.0.18:7000/";
+        String BASE_URL = "http://192.168.122.1:7000/";
+        //String BASE_URL = "http://192.168.0.18:7000/";
         String idLab =getIntent().getStringExtra("id");
         Long idLong = getIntent().getLongExtra("idLong", 22);
        // if(idLab==null){idLab="3";}
@@ -66,36 +67,12 @@ public class InventarioLaberintoActivity extends AppCompatActivity {
 
     }
 
+    public void onItemSelected(LaberintoMin labMin){
+        Log.i("anda el click?","Si anda");
+        Intent inventarioActivity = new Intent(this, InventarioLaberintoActivity.class);
+        inventarioActivity.putExtra("laberintoParametro",labMin);
+        startActivity(inventarioActivity);
 
-
-    /*    // Construct the data source
-        ArrayList<LaberintoMin> laberintos = LaberintoMin.fromJson();
-        // Create the adapter to convert the array to views
-        LaberintoAdapter adapter = new LaberintoAdapter(this, laberintos);
-        // Attach the adapter to a ListView
-        ListView listViewLaberintos = (ListView) findViewById(R.id.listViewLaberintos);
-        listViewLaberintos.setAdapter(adapter);
-*/
-        /*InventarioCall.enqueue(new Callback<List<LaberintoMin>>() {
-            @Override
-            public void onResponse(Response<List<LaberintoMin>> response, Retrofit retrofit) {
-                List<LaberintoMin> laberintos = response.body();
-                LaberintoAdapter adapter = new LaberintoAdapter(getBaseContext(),laberintos);
-                ListView listViewLaberintos=(ListView) findViewById(R.id.listViewLaberintos);
-                listViewLaberintos.setAdapter(adapter);
-
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                t.printStackTrace();
-                Log.e("PeliculasApp ", t.getMessage());
-            }
-        });
-
-
-
-
-
-    }*/
     }
+
+}
