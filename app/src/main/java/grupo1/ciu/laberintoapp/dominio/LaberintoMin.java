@@ -13,18 +13,23 @@ public class LaberintoMin {
 
     String nombreLaberinto;
     String pathImage;
-    String idInterno;
+    Long idInterno;
     String descripcion;
+    String id;
 
     public String getNombreLaberinto() {
         return nombreLaberinto;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getPathImage() {
         return pathImage;
     }
 
-    public String getIdInterno() {
+    public Long getIdInterno() {
         return idInterno;
     }
 
@@ -32,10 +37,11 @@ public class LaberintoMin {
 
         public LaberintoMin (JSONObject lab) {
             try {
+                this.id = lab.getString("idString");
                 this.descripcion= lab.getString("descripcion");
                 this.nombreLaberinto = lab.getString("nombreLaberinto");
                 this.pathImage = lab.getString("pathImage");
-                this.idInterno= lab.getString("id");
+                this.idInterno= lab.getLong("id");
             } catch (JSONException e) {
                 e.printStackTrace();
             }

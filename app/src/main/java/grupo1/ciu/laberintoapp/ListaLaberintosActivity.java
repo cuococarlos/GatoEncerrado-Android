@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+
 import java.util.List;
 
 import grupo1.ciu.laberintoapp.Adapter.LaberintoAdapter;
@@ -43,12 +45,16 @@ public class ListaLaberintosActivity extends FragmentActivity {
 
         laberintosService = retrofit.create(LaberintosService.class);
         Call<List<LaberintoMin>> LaberintoCall = laberintosService.getLaberintos();
-
+        //Call<JSONArray> LaberintoCall = laberintosService.getLaberintos();
 
         LaberintoCall.enqueue(new Callback<List<LaberintoMin>>() {
+        //LaberintoCall.enqueue(new Callback<JSONArray>(){
             @Override
             public void onResponse(Response<List<LaberintoMin>> response, Retrofit retrofit) {
+            //public void onResponse(Response<JSONArray> response, Retrofit retrofit) {
                 List<LaberintoMin> laberintos = response.body();
+                //JSONArray laberintos = response.body();
+                //List<LaberintoMin> laberinto2=LaberintoMin.fromJson(laberintos);
                 LaberintoAdapter adapter = new LaberintoAdapter(getBaseContext(), laberintos);
                 listViewLaberintos = (ListView) findViewById(R.id.listView2);
 

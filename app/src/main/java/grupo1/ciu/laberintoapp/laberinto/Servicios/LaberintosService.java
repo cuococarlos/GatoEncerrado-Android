@@ -1,5 +1,7 @@
 package grupo1.ciu.laberintoapp.laberinto.Servicios;
 
+import org.json.JSONArray;
+
 import java.util.List;
 
 import grupo1.ciu.laberintoapp.dominio.ElementoMin;
@@ -14,7 +16,7 @@ import retrofit.http.Path;
 public interface LaberintosService {
     @GET("laberintos")
     public Call<List<LaberintoMin>>getLaberintos();
-
+    //public Call<JSONArray>getLaberintos();
     @GET("inventario/{idlab}/1")
     public Call<List<ElementoMin>>getInventario(@Path("idlab")String idlab);
 

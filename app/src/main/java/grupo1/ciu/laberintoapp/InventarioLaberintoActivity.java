@@ -33,8 +33,10 @@ public class InventarioLaberintoActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);*/
 
         String BASE_URL = "http://192.168.0.18:7000/";
-        Integer idLab =getIntent().getIntExtra("idLaberinto",28);
-        Log.i("Que dato me estoy tray",idLab.toString());
+        String idLab =getIntent().getStringExtra("id");
+        Long idLong = getIntent().getLongExtra("idLong", 22);
+       // if(idLab==null){idLab="3";}
+       // Log.i("Que dato me estoy tray",idLab.toString());
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -42,8 +44,8 @@ public class InventarioLaberintoActivity extends AppCompatActivity {
 
         inventarioService = retrofit.create(LaberintosService.class);
 
-        String idLab2=  Integer.toString(idLab);
-        Call<List<ElementoMin>> InventarioCall = inventarioService.getInventario(idLab2);
+        //String idLab2=  Integer.toString(idLab)
+        Call<List<ElementoMin>> InventarioCall = inventarioService.getInventario(idLab);
         Log.e("elementos inv",InventarioCall.toString());
         InventarioCall.enqueue(new Callback<List<ElementoMin>>() {
             @Override

@@ -27,6 +27,8 @@ import grupo1.ciu.laberintoapp.dominio.LaberintoMin;
  */
 public class LaberintoAdapter extends ArrayAdapter<LaberintoMin> {
 
+        public String idDelLaberinto;
+public Long idlong;
 
         public LaberintoAdapter(Context context, List<LaberintoMin> laberintos) {
             super(context, R.layout.elemento_listado, laberintos);
@@ -34,8 +36,8 @@ public class LaberintoAdapter extends ArrayAdapter<LaberintoMin> {
 
         @Override
         public long getItemId(int position) {
-            return Long.parseLong(getItem(position).getIdInterno());
-
+            //return Long.parseLong(getItem(position).getIdInterno());
+            return getItem(position).getIdInterno();
         }
 
         @Override
@@ -47,11 +49,13 @@ public class LaberintoAdapter extends ArrayAdapter<LaberintoMin> {
             //otra forma de manejar el inflate()
            // LayoutInflater inflater = (LayoutInflater) getContext()
               //      .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            idDelLaberinto=laberinto.getId();
+            idlong = laberinto.getIdInterno();
 
             final TextView nombreLaberinto = (TextView) rowView.findViewById(R.id.nombreLaberinto);
             nombreLaberinto.setText(laberinto.getNombreLaberinto());
-            final TextView idLaberinto= (TextView) rowView.findViewById(R.id.idLaberinto);
-            idLaberinto.setText(laberinto.getIdInterno());
+            /*final TextView idLaberinto= (TextView) rowView.findViewById(R.id.idLaberinto);
+            idLaberinto.setText(Integer.toString(laberinto.getIdInterno()));*/
 
             final TextView descripcionLaberinto = (TextView) rowView.findViewById(R.id.descripcionLab);
             descripcionLaberinto.setText(laberinto.getDescripcion());
@@ -66,23 +70,19 @@ public class LaberintoAdapter extends ArrayAdapter<LaberintoMin> {
             //ImageView imagenLaberinto= rowView.findViewById(R.id.imageView);
             //imagenLaberinto.setImageDrawable(laberinto.getPathImage());
 
-            nombreLaberinto.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                }
-
-            });
             final Button inventario= (Button)rowView.findViewById(R.id.buttonListado);
             inventario.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.i("c","pase por aca");
-                    Intent InventarioActivity = new Intent(getContext(), InventarioLaberintoActivity.class);
-                    InventarioActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    Log.i("Que dato paso",Integer.toString(R.id.idLaberinto));
-                    InventarioActivity.putExtra("idLaberinto",R.id.idLaberinto);
-                    getContext().startActivity(InventarioActivity);
+                    
+                    Intent inventarioActivity = new Intent(getContext(), InventarioLaberintoActivity.class);
+                    inventarioActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                   // Log.i("Que dato paso",(idDelLaberinto));
+                    inventarioActivity.putExtra("id",idDelLaberinto);
+                    inventarioActivity.putExtra("idlong", idlong);
+                    getContext().startActivity(inventarioActivity);
 
                 }
             });
