@@ -36,7 +36,7 @@ public class ListaLaberintosActivity extends AppCompatActivity implements Adapte
         listViewLaberintos.setOnItemClickListener(this);
 
         //String BASE_URL = "http://192.168.0.18:7000/";
-        String BASE_URL = "http://10.9.0.179:7000/";
+        String BASE_URL = "http://192.168.122.1:7000/";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -73,9 +73,9 @@ public class ListaLaberintosActivity extends AppCompatActivity implements Adapte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Log.i("Numero de id",Long.toString(id));
-        Intent inventarioActivity = new Intent(this, LaberintoDetallesActivity.class);
-        inventarioActivity.putExtra("idLaberinto", id);
-        startActivity(inventarioActivity);
+        Intent laberintoDetallesActivity = new Intent(this, LaberintoDetallesActivity.class);
+        laberintoDetallesActivity.putExtra("idLaberinto", id);
+        startActivity(laberintoDetallesActivity);
     }
 };
 

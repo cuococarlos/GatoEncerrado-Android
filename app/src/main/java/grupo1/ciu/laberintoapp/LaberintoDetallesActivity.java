@@ -1,10 +1,16 @@
 package grupo1.ciu.laberintoapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -19,13 +25,15 @@ import retrofit.Response;
 import retrofit.Retrofit;
 
 public class LaberintoDetallesActivity extends AppCompatActivity {
-    LaberintosService laberintoService;
+    private LaberintosService laberintoService;
+    Long idLab=Long.valueOf(4);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detalleslaberinto);
-        String BASE_URL = "http://10.9.0.179:7000/";
-        Long idLab = getIntent().getExtras().getLong("idLaberinto",1);
+        String BASE_URL = "http://192.168.122.1:7000/";
+         idLab = getIntent().getExtras().getLong("idLaberinto", 1);
         //Long idLong = getIntent().getLongExtra("idLong", 22);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -33,21 +41,30 @@ public class LaberintoDetallesActivity extends AppCompatActivity {
                 .build();
 
         laberintoService = retrofit.create(LaberintosService.class);
-        Log.i("Cual me llega del inten",Long.toString(idLab));
-        Call<LaberintoMin> laberintoCall = laberintoService.getLaberinto(idLab.toString());
-        Log.v("","");
-        laberintoCall.enqueue(new Callback<LaberintoMin>(){
+        Log.i("Cual me llega del inten", Long.toString(idLab));
+        Call<LaberintoMin> laberintoCall = laberintoService.getLaberinto(Long.toString(idLab));
+        laberintoCall.enqueue(new Callback<LaberintoMin>() {
             @Override
             public void onResponse(Response<LaberintoMin> response, Retrofit retrofit) {
-               final LaberintoMin lab = response.body();
+                //final LaberintoMin  laberinto
+                 LaberintoMin lab = response.body();
                 //InventarioAdapter adapter = new InventarioAdapter(getBaseContext(),inventario);
                 //inventarioList=(ListView)findViewById(R.id.inventarioView);
                 //inventarioList.setAdapter(adapter);
 
-                Log.e("pase","por aca");
+                Log.e("pase", "por aca");
                 final TextView nombreLaberinto = (TextView) findViewById(R.id.detallesnombrelab);
-                nombreLaberinto.setText(lab.getDescripcion());
+                nombreLaberinto.setText(lab.getNombreLaberinto());
 
+                final TextView descripcionLaberinto = (TextView) findViewById(R.id.detallesnombrelab);
+                descripcionLaberinto.setText(lab.getDescripcion());
+
+                String URL_PHOTOS = "http://imagizer.imageshack.us/a/";
+                ImageView imageView = (ImageView) findViewById(R.id.detallesimagen);
+                Picasso.with(getBaseContext())
+                        .load(URL_PHOTOS + lab.getPathImage())
+                        .resize(200, 100)
+                        .into(imageView);
 
             }
 
@@ -56,6 +73,21 @@ public class LaberintoDetallesActivity extends AppCompatActivity {
                 t.printStackTrace();
                 Log.e("LabApp ", t.getMessage());
             }
-            });
-        }
-}
+        });
+
+
+
+
+            ;
+
+    }
+   public void irAInventario(View v){
+
+
+       Intent inventarioActivity = new Intent(this, InventarioLaberintoActivity.class);
+       inventarioActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+       inventarioActivity.putExtra("id", idLab);
+       startActivity(inventarioActivity);
+   }
+   }
+
