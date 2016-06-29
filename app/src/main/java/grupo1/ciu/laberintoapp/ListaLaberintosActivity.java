@@ -23,22 +23,20 @@ import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-public class ListaLaberintosActivity extends AppCompatActivity {
+public class ListaLaberintosActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private LaberintosService laberintosService;
-    private boolean pantallaTablet;
-    LaberintoMin seleccionado;
     ListView listViewLaberintos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_laberintos);
-       /* Todavia no utilizamos la toolbar para nada
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar);*/
+
+        listViewLaberintos = (ListView) findViewById(R.id.listView2);
+        listViewLaberintos.setOnItemClickListener(this);
 
         //String BASE_URL = "http://192.168.0.18:7000/";
-        String BASE_URL = "http:192.168.122.1:7000/";
+        String BASE_URL = "http://10.9.0.179:7000/";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -46,33 +44,15 @@ public class ListaLaberintosActivity extends AppCompatActivity {
 
         laberintosService = retrofit.create(LaberintosService.class);
         Call<List<LaberintoMin>> LaberintoCall = laberintosService.getLaberintos();
-        //Call<JSONArray> LaberintoCall = laberintosService.getLaberintos();
 
         LaberintoCall.enqueue(new Callback<List<LaberintoMin>>() {
-        //LaberintoCall.enqueue(new Callback<JSONArray>(){
             @Override
             public void onResponse(Response<List<LaberintoMin>> response, Retrofit retrofit) {
-            //public void onResponse(Response<JSONArray> response, Retrofit retrofit) {
                 List<LaberintoMin> laberintos = response.body();
-                //JSONArray laberintos = response.body();
-                //List<LaberintoMin> laberinto2=LaberintoMin.fromJson(laberintos);
                 LaberintoAdapter adapter = new LaberintoAdapter(getBaseContext(), laberintos);
-                listViewLaberintos = (ListView) findViewById(R.id.listView2);
 
-                // para mostrar el text view seleccionado=(TextView)findViewById(R.id.seleccionado);
                 listViewLaberintos.setAdapter(adapter);
-
-                /*listViewLaberintos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> list, View view, int position, long id) {
-
-
-                    }*/
-
-                    ;
-
-
-                };
+            };
 
 
             @Override
@@ -87,24 +67,15 @@ public class ListaLaberintosActivity extends AppCompatActivity {
 
     };
 
-    public void onItemSelected(LaberintoMin labMin){
-        Log.i("anda el click?","Si anda");
-        Intent inventarioActivity = new Intent(this, InventarioLaberintoActivity.class);
-        inventarioActivity.putExtra("laberintoParametro",labMin);
+
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.i("Numero de id",Long.toString(id));
+        Intent inventarioActivity = new Intent(this, LaberintoDetallesActivity.class);
+        inventarioActivity.putExtra("idLaberinto", id);
         startActivity(inventarioActivity);
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-    };
+};
 

@@ -30,22 +30,16 @@ public class InventarioLaberintoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventario_laberinto);
-        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);*/
-        String BASE_URL = "http://192.168.122.1:7000/";
-        //String BASE_URL = "http://192.168.0.18:7000/";
-        String idLab =getIntent().getStringExtra("id");
+        String BASE_URL = "http://10.9.0.179:7000/";
+
         Long idLong = getIntent().getLongExtra("idLong", 22);
-       // if(idLab==null){idLab="3";}
-       // Log.i("Que dato me estoy tray",idLab.toString());
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         inventarioService = retrofit.create(LaberintosService.class);
-
-        //String idLab2=  Integer.toString(idLab)
+        String idLab="2";
         Call<List<ElementoMin>> InventarioCall = inventarioService.getInventario(idLab);
         Log.e("elementos inv",InventarioCall.toString());
         InventarioCall.enqueue(new Callback<List<ElementoMin>>() {

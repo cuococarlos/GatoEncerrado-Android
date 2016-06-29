@@ -16,8 +16,11 @@ import retrofit.http.Path;
 public interface LaberintosService {
     @GET("laberintos")
     public Call<List<LaberintoMin>>getLaberintos();
-    //public Call<JSONArray>getLaberintos();
+
     @GET("inventario/{idlab}/1")
     public Call<List<ElementoMin>>getInventario(@Path("idlab")String idlab);
+
+    @GET("laberinto/1/{idlab}")
+    public Call<LaberintoMin>getLaberinto(@Path("idlab")String idlab);
 
 }
