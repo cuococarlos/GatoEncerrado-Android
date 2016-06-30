@@ -21,6 +21,8 @@ public class LaberintoMin implements  Serializable {
     String descripcion;
     String id;
 
+
+
     public String getNombreLaberinto() {
         return nombreLaberinto;
     }
@@ -37,6 +39,7 @@ public class LaberintoMin implements  Serializable {
     public String getDescripcion() {
         return descripcion;
     }
+
 }
 
 

@@ -30,7 +30,7 @@ public class InventarioLaberintoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventario_laberinto);
-        String BASE_URL = "http://192.168.122.1:7000/";
+        String BASE_URL = "http://192.168.1.7:7000/";
 
         Long idLong = getIntent().getLongExtra("id", 22);
         Retrofit retrofit = new Retrofit.Builder()

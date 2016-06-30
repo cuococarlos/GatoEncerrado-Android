@@ -16,18 +16,24 @@
         android:text="Large Text"
         android:id="@+id/detallesnombrelab"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/detallesnombrelab"
-        android:id="@+id/detallesdescripcion"/>
+        android:id="@+id/detallesdescripcion"
+        android:layout_alignEnd="@+id/detallesnombrelab"
+        android:layout_marginEnd="26dp"
+        android:layout_alignTop="@+id/buttonDetalles"
+        android:layout_alignStart="@+id/detallesnombrelab" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/detallesimagen"
-        />
+        android:layout_toEndOf="@id/detallesnombrelab"
+        android:layout_alignParentBottom="false"
+        android:layout_alignStart="@+id/detallesnombrelab" />
 
     <Button
         android:layout_width="wrap_content"

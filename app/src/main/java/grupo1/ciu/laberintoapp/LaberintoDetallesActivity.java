@@ -32,7 +32,7 @@ public class LaberintoDetallesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detalleslaberinto);
-        String BASE_URL = "http://192.168.122.1:7000/";
+        String BASE_URL = "http://192.168.1.7:7000/";
          idLab = getIntent().getExtras().getLong("idLaberinto", 1);
         //Long idLong = getIntent().getLongExtra("idLong", 22);
         Retrofit retrofit = new Retrofit.Builder()
@@ -63,7 +63,8 @@ public class LaberintoDetallesActivity extends AppCompatActivity {
                 ImageView imageView = (ImageView) findViewById(R.id.detallesimagen);
                 Picasso.with(getBaseContext())
                         .load(URL_PHOTOS + lab.getPathImage())
-                        .resize(200, 100)
+                        .resize(500, 500)
+                        .centerInside()
                         .into(imageView);
 
             }
