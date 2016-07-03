@@ -31,29 +31,7 @@
             android:text="Large Text"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_gravity="center_horizontal" />
-        <TextView
-            android:id="@+id/descripcionLab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/idLaberinto"
-            />
 
-
-        <!--<Button-->
-            <!--style="?android:attr/buttonStyleSmall"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@color/colorPrimary"-->
-            <!--android:text="@string/boton1"-->
-            <!--android:textAppearance="@style/AppTheme"-->
-            <!--android:id="@+id/buttonListado"-->
-            <!--android:layout_gravity="center_horizontal"-->
-            <!--android:clickable="true" />-->
 
     </LinearLayout>
 

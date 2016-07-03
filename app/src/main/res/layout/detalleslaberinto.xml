@@ -9,31 +9,30 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".LaberintoDetallesActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/detallesnombrelab"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/detallesdescripcion"
-        android:layout_alignEnd="@+id/detallesnombrelab"
-        android:layout_marginEnd="26dp"
-        android:layout_alignTop="@+id/buttonDetalles"
-        android:layout_alignStart="@+id/detallesnombrelab" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/detallesnombrelab">
+        </TextView>
+
 
     <ImageView
+        android:id="@+id/detallesimagen"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
+        android:scaleType="centerInside"
+        android:contentDescription="Descripción del contenido de la imagen"
+        android:layout_marginTop="10dp" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/detallesimagen"
-        android:layout_toEndOf="@id/detallesnombrelab"
-        android:layout_alignParentBottom="false"
-        android:layout_alignStart="@+id/detallesnombrelab" />
+        android:textStyle="bold|italic"
+        android:textSize="20dp"
+        android:id="@+id/detallesdescripcion"
+        android:layout_above="@+id/buttonDetalles" />
+
 
     <Button
         android:layout_width="wrap_content"

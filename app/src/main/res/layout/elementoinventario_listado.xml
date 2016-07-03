@@ -6,11 +6,19 @@
 
             <TextView
                 android:id="@+id/nombreItem"
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 />
 
+        <TextView
+        android:id="@+id/desItem"
+        android:textStyle="italic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        />
 
 
 

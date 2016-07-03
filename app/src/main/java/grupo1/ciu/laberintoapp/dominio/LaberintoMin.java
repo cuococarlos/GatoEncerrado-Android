@@ -17,7 +17,6 @@ public class LaberintoMin implements  Serializable {
 
     String nombreLaberinto;
     String pathImage;
-    Long idInterno;
     String descripcion;
     String id;
 

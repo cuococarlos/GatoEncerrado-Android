@@ -32,7 +32,7 @@ public class LaberintoDetallesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detalleslaberinto);
-        String BASE_URL = "http://192.168.1.7:7000/";
+        String BASE_URL = "http://192.168.0.18:7000/";
          idLab = getIntent().getExtras().getLong("idLaberinto", 1);
         //Long idLong = getIntent().getLongExtra("idLong", 22);
         Retrofit retrofit = new Retrofit.Builder()
@@ -56,15 +56,13 @@ public class LaberintoDetallesActivity extends AppCompatActivity {
                 final TextView nombreLaberinto = (TextView) findViewById(R.id.detallesnombrelab);
                 nombreLaberinto.setText(lab.getNombreLaberinto());
 
-                final TextView descripcionLaberinto = (TextView) findViewById(R.id.detallesnombrelab);
+                final TextView descripcionLaberinto = (TextView) findViewById(R.id.detallesdescripcion);
                 descripcionLaberinto.setText(lab.getDescripcion());
 
                 String URL_PHOTOS = "http://imagizer.imageshack.us/a/";
                 ImageView imageView = (ImageView) findViewById(R.id.detallesimagen);
                 Picasso.with(getBaseContext())
                         .load(URL_PHOTOS + lab.getPathImage())
-                        .resize(500, 500)
-                        .centerInside()
                         .into(imageView);
 
             }

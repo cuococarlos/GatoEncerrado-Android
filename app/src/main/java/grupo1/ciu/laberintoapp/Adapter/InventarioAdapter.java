@@ -27,7 +27,7 @@ public class InventarioAdapter extends ArrayAdapter<ElementoMin>{
 
     @Override
     public long getItemId(int position) {
-        return getItem(position).getIdInterno();
+        return new Long(getItem(position).getId());
 
     }
 
@@ -37,15 +37,13 @@ public class InventarioAdapter extends ArrayAdapter<ElementoMin>{
         if(rowView==null) {
             rowView = LayoutInflater.from(getContext()).inflate(R.layout.elementoinventario_listado, parent, false);
         }
-        //otra forma de manejar el inflate()
-        // LayoutInflater inflater = (LayoutInflater) getContext()
-        //      .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
 
        final TextView nombreElemento = (TextView) rowView.findViewById(R.id.nombreItem);
         nombreElemento.setText(elementoMin.getNombre());
 
-        //TextView idlab = (TextView) rowView.findViewById(R.id.idLaberinto);
-        //idlab.setText(laberinto.getIdInterno());
+       final TextView desElemento= (TextView) rowView.findViewById(R.id.desItem);
+        desElemento.setText(elementoMin.getDescripcion());
 
         // Codigo para insertar una imagen,ver como hacerlo si nos viene un string con la ruta
         //ImageView imagenLaberinto= rowView.findViewById(R.id.imageView);

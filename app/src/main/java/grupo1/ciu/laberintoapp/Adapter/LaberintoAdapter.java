@@ -28,7 +28,7 @@ import grupo1.ciu.laberintoapp.dominio.LaberintoMin;
 public class LaberintoAdapter extends ArrayAdapter<LaberintoMin> {
 
         public String idDelLaberinto;
-        public Long idlong;
+
 
         public LaberintoAdapter(Context context, List<LaberintoMin> laberintos) {
             super(context, R.layout.elemento_listado, laberintos);
@@ -45,17 +45,15 @@ public class LaberintoAdapter extends ArrayAdapter<LaberintoMin> {
             if(rowView==null) {
                  rowView = LayoutInflater.from(getContext()).inflate(R.layout.elemento_listado, parent, false);
             }
-            //otra forma de manejar el inflate()
-           // LayoutInflater inflater = (LayoutInflater) getContext()
-              //      .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
             idDelLaberinto=laberinto.getId();
 
             final TextView nombreLaberinto = (TextView) rowView.findViewById(R.id.nombreLaberinto);
             nombreLaberinto.setText(laberinto.getNombreLaberinto());
 
 
-            final TextView descripcionLaberinto = (TextView) rowView.findViewById(R.id.descripcionLab);
-            descripcionLaberinto.setText(laberinto.getDescripcion());
+            /*final TextView descripcionLaberinto = (TextView) rowView.findViewById(R.id.descripcionLab);
+            descripcionLaberinto.setText(laberinto.getDescripcion());*/
 
             String URL_PHOTOS= "http://imagizer.imageshack.us/a/";
             ImageView imageView = (ImageView) rowView.findViewById(R.id.imageView);

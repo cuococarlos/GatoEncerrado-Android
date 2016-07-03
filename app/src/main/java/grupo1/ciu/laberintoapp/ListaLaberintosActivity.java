@@ -35,8 +35,8 @@ public class ListaLaberintosActivity extends AppCompatActivity implements Adapte
         listViewLaberintos = (ListView) findViewById(R.id.listView2);
         listViewLaberintos.setOnItemClickListener(this);
 
-        //String BASE_URL = "http://192.168.0.18:7000/";
-        String BASE_URL = "http://192.168.1.7:7000/";
+        String BASE_URL = "http://192.168.0.18:7000/";
+        //String BASE_URL = "http://192.168.1.7:7000/";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())

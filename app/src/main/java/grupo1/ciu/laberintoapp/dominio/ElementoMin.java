@@ -8,26 +8,26 @@ import org.json.JSONObject;
  */
 public class ElementoMin {
     String nombre;
-    String des;
-    int idInterno;
+    String descripcion;
+    String id;
 
     public String getNombre() {
         return nombre;
     }
 
-    public String getDes() {
-        return des;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public int getIdInterno() {
-        return idInterno;
+    public String getId() {
+        return id;
     }
 
-    public ElementoMin (JSONObject ele) {
+  /* public ElementoMin (JSONObject ele) {
         try {
+            this.id= ele.getString("id");
             this.nombre= ele.getString("nombre");
-            this.des = ele.getString("des");
-            this.idInterno= ele.getInt("Id");
+            this.descripcion = ele.getString("descripcion");
         } catch (JSONException e) {
             e.printStackTrace();
 
@@ -35,5 +35,5 @@ public class ElementoMin {
     }
 
 
-
+*/
 }
